@@ -7,21 +7,16 @@ public class Mario : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D bc2d;
     [SerializeField] private LayerMask platformLayerMask;
+    [SerializeField] private LayerMask enemyLayerMask;
 
 
-    public float x = 0;
+    [SerializeField] private float x = 0;
 
-    public float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 2.5f;
 
-    public float jumpForce = 5f;
-    public float jumpTime = 0.2f;
-
-    private float jumpTimeCounter = 0;
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    [SerializeField] private float jumpForce = 5.7f;
+    [SerializeField] private float jumpTime = 0.25f;
+    [SerializeField] private float jumpTimeCounter = 0;
 
     private void Update()
     {
@@ -54,5 +49,10 @@ public class Mario : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, bc2d.bounds.extents.y + 0.1f, platformLayerMask);
         return raycastHit.collider != null;
+    }
+
+    private void checkFeet()
+    { 
+        
     }
 }
