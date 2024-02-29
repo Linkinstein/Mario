@@ -18,6 +18,8 @@ public class Mario : MonoBehaviour
     [SerializeField] private float jumpTime = 0.25f;
     [SerializeField] private float jumpTimeCounter = 0;
 
+    [SerializeField] private bool big = false;
+
     private void Update()
     {
         checkFeet();
@@ -56,7 +58,6 @@ public class Mario : MonoBehaviour
     private void checkFeet()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, 0.1f, enemyLayerMask);
-        Debug.DrawRay(bc2d.bounds.center - new Vector3(bc2d.bounds.extents.x, bc2d.bounds.extents.y), Vector2.down * 0.1f, Color.red);
         if (raycastHit.collider != null)
         {
             Monster monster = raycastHit.collider.GetComponent<Monster>();

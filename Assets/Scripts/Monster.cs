@@ -11,7 +11,6 @@ public class Monster : MonoBehaviour
     [SerializeField] private float x = -1;
     [SerializeField] private float moveSpeed = 1f;
 
-    [SerializeField] private bool wings = false;
     [SerializeField] private bool alive = true;
 
     private void FixedUpdate()
@@ -32,12 +31,9 @@ public class Monster : MonoBehaviour
 
     public void Death(float dir)
     {
-        if (wings) wings = false;
-        else 
-        { 
-            cc2d.enabled = false; 
-            alive = false;
-            rb.velocity = new Vector2((1+dir)*-1, 3f);
-        }
+        cc2d.enabled = false;
+        rb.isKinematic = true;
+        alive = false;
+        rb.velocity = new Vector2(0, 0);
     }
 }
