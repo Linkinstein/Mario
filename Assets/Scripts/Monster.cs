@@ -11,17 +11,33 @@ public class Monster : MonoBehaviour
     [SerializeField] private float x = -1;
     [SerializeField] private float moveSpeed = 1f;
 
+    [SerializeField] private bool wings = false;
+    [SerializeField] private bool alive = true;
+
     private void FixedUpdate()
     {
-        if (hittingWall()) x = x * -1;
-
-        rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
+        if (alive)
+        {
+            if (HittingWall()) x = x * -1;
+            rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
+        }
     }
 
-    private bool hittingWall()
+    private bool HittingWall()
     {
         Vector2 dir = new Vector2(x, 0f);
         RaycastHit2D raycastHit = Physics2D.Raycast(cc2d.bounds.center, dir, cc2d.bounds.extents.x + 0.1f, platformLayerMask);
         return raycastHit.collider != null;
+    }
+
+    public void Death(float dir)
+    {
+        if (wings) wings = false;
+        else 
+        { 
+            cc2d.enabled = false; 
+            alive = false;
+            rb.velocity = new Vector2((1+dir)*-1, 3f);
+        }
     }
 }
