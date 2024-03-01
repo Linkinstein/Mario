@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 public class Mario : MonoBehaviour
 {
@@ -19,33 +20,40 @@ public class Mario : MonoBehaviour
     [SerializeField] private float jumpTimeCounter = 0;
 
     [SerializeField] private bool big = false;
+    [SerializeField] private bool alive = true;
 
     private void Update()
     {
-        checkFeet();
-
-        if (isGrounded() && Input.GetButtonDown("Jump"))
+        if (alive)
         {
-            jumpTimeCounter = jumpTime;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
+            checkFeet();
 
-        if (Input.GetButton("Jump") && jumpTimeCounter > 0)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            jumpTimeCounter -= Time.deltaTime;
-        }
+            if (isGrounded() && Input.GetButtonDown("Jump"))
+            {
+                jumpTimeCounter = jumpTime;
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
 
-        if (Input.GetButtonUp("Jump"))
-        {
-            jumpTimeCounter = 0;
+            if (Input.GetButton("Jump") && jumpTimeCounter > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                jumpTimeCounter -= Time.deltaTime;
+            }
+
+            if (Input.GetButtonUp("Jump"))
+            {
+                jumpTimeCounter = 0;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        x = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
+        if (alive)
+        {
+            x = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
+        }
 
     }
 
@@ -63,9 +71,17 @@ public class Mario : MonoBehaviour
             Monster monster = raycastHit.collider.GetComponent<Monster>();
             if (monster != null)
             {
-                monster.Death(x);
+                monster.Death(x, 's');
             }
             rb.velocity = new Vector2(rb.velocity.x, 3f);
         }
+    }
+
+    public void Death()
+    {
+        Debug.Log("Mario Died");
+        bc2d.enabled = false;
+        alive = false;
+        rb.velocity = new Vector2(0, 3f);
     }
 }
