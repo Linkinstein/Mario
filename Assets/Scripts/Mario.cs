@@ -22,6 +22,8 @@ public class Mario : MonoBehaviour
     [SerializeField] private float jumpTime = 0.25f;
     [SerializeField] private float jumpTimeCounter = 0;
 
+    private int fireballCount = 0;
+
     [SerializeField] private bool big = false;
     [SerializeField] private bool flower = false;
     [SerializeField] private bool starred = false;
@@ -29,6 +31,7 @@ public class Mario : MonoBehaviour
 
     private void Update()
     {
+
         if (alive)
         {
             if (!isGrounded())
@@ -54,15 +57,24 @@ public class Mario : MonoBehaviour
                 jumpTimeCounter = 0;
             }
 
-            if (flower && Input.GetKeyDown(KeyCode.Z))
+            if (flower && Input.GetKeyDown(KeyCode.Z) && fireballCount<2)
             {
+                fireballCount++;
                 Vector3 spawnPOS = this.gameObject.transform.position;
                 spawnPOS.x = spawnPOS.x + x;
                 GameObject fireballinstance = Instantiate(fireball, spawnPOS, this.gameObject.transform.rotation);
                 fireballinstance.GetComponent<Fireball>().x = Mathf.Sign(x);
+                if (fireballCount >= 2) StartCoroutine(fireballCooldown());
             }
         }
     }
+
+    IEnumerator fireballCooldown()
+    {
+        yield return new WaitForSeconds(0.5f);
+        fireballCount = 0;
+    }
+
     private void FixedUpdate()
     {
         if (alive)
