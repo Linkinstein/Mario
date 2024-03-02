@@ -137,8 +137,6 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  x: -1
-  moveSpeed: 1
   turtle: 1
   shelled: 0
   alive: 1
