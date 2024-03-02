@@ -53,6 +53,7 @@ public class Monster : MonoBehaviour
             {
                 x = Mathf.Sign(this.gameObject.transform.position.x - collision.transform.position.x)*1;
                 alive = false;
+                cc2d.excludeLayers = 0;
             }
         }
         if (collision.gameObject.CompareTag("Enemy"))
@@ -69,7 +70,8 @@ public class Monster : MonoBehaviour
                 if (turtle)
                 {
                     shelled = true;
-                    rb.velocity = new Vector2(0, 0);
+                    rb.velocity = new Vector2(0, 0); 
+                    StartCoroutine(resurrection());
                 }
                 else
                 {
@@ -86,5 +88,12 @@ public class Monster : MonoBehaviour
                 rb.velocity = new Vector2(dir, 3f);
                 break;
         }
+    }
+    IEnumerator resurrection()
+    {
+        yield return new WaitForSeconds(3);
+        if (alive) //rev animation
+        yield return new WaitForSeconds(2);
+        if (alive) shelled = false;
     }
 }

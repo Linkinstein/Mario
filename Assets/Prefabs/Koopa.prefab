@@ -139,7 +139,7 @@ MonoBehaviour:
     m_Bits: 128
   x: -1
   moveSpeed: 1
-  turtle: 0
+  turtle: 1
   shelled: 0
   alive: 1
 --- !u!70 &-9019459846457795496
@@ -157,7 +157,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
