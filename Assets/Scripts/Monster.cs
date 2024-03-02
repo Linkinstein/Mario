@@ -88,7 +88,10 @@ public class Monster : MonoBehaviour
     IEnumerator resurrection()
     {
         yield return new WaitForSeconds(3);
-        if (alive) //rev animation
+        if (alive) 
+        { 
+            
+        }
         yield return new WaitForSeconds(2);
         if (alive) shelled = false;
     }
