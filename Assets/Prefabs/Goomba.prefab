@@ -165,13 +165,13 @@ MonoBehaviour:
   cc2d: {fileID: 5636084856876436456}
   platformLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   turtle: 0
   shelled: 0
   alive: 1

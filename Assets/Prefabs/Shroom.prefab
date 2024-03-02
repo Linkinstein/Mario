@@ -175,6 +175,6 @@ MonoBehaviour:
   bc2d: {fileID: 6871458699404454396}
   platformLayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  x: 1
+    m_Bits: 256
   mover: 1
+  x: 1

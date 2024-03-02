@@ -6,9 +6,15 @@ public class Treasure : MonoBehaviour
     [SerializeField] bool shroom;
     [SerializeField] bool star;
     [SerializeField] bool coin;
+    [SerializeField] bool itemless;
+    [SerializeField] bool fake;
+    [SerializeField] bool invisible;
     [SerializeField] int coinTimes = 0;
 
-    public void hit()
+    [SerializeField] GameObject shroomPrefab;
+    [SerializeField] GameObject starPrefab;
+
+    public void hit(float x)
     {
         //jiggle
         if (activated)
@@ -23,7 +29,11 @@ public class Treasure : MonoBehaviour
             }
             if (shroom)
             {
-
+                activated = false;
+                Vector2 newPOS = this.gameObject.transform.position;
+                newPOS.y = newPOS.y + 0.25f;
+                GameObject shroom = Instantiate(shroomPrefab, newPOS, this.gameObject.transform.rotation);
+                shroom.GetComponent<Items>().x = x;
             }
             if (star)
             {

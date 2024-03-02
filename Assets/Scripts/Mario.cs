@@ -27,6 +27,8 @@ public class Mario : MonoBehaviour
     [SerializeField] private bool starred = false;
     [SerializeField] private bool alive = true;
 
+    private int fireCount = 0;
+
     private void Update()
     {
         if (alive)
@@ -54,20 +56,29 @@ public class Mario : MonoBehaviour
                 jumpTimeCounter = 0;
             }
 
-            if (flower && Input.GetKeyDown(KeyCode.Z))
+            if (flower && Input.GetKeyDown(KeyCode.Z) && fireCount<2)
             {
+                fireCount++;
                 Vector3 spawnPOS = this.gameObject.transform.position;
-                spawnPOS.x = spawnPOS.x + x;
+                spawnPOS.x = spawnPOS.x * x;
                 GameObject fireballinstance = Instantiate(fireball, spawnPOS, this.gameObject.transform.rotation);
-                fireballinstance.GetComponent<Fireball>().x = Mathf.Sign(x);
+                fireballinstance.GetComponent<Fireball>().x = x;
+                if (fireCount >= 2) StartCoroutine(fireCooldown());
             }
         }
     }
+
+    IEnumerator fireCooldown()
+    {
+        yield return new WaitForSeconds(0.5f);
+        fireCount = 0;
+    }
+
     private void FixedUpdate()
     {
         if (alive)
         {
-            if (Input.GetAxis("Horizontal")!=0) x = Input.GetAxis("Horizontal");
+            if (Input.GetAxis("Horizontal")!=0) x = Mathf.Sign(Input.GetAxis("Horizontal"));
             rb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y);
         }
     }
@@ -83,7 +94,11 @@ public class Mario : MonoBehaviour
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.up, 0.1f, platformLayerMask);
         if (raycastHit.collider != null)
         {
-
+            Treasure treasure = raycastHit.collider.GetComponent<Treasure>();
+            if (treasure != null) 
+            {
+                treasure.hit(x);
+            }
         }
     }
 
