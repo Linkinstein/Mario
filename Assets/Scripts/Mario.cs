@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Mario : MonoBehaviour
 {
     [SerializeField] private Sprite bigun;
     [SerializeField] private Sprite smallun;
-
+    [SerializeField] private GameObject fireball;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D bc2d;
@@ -27,12 +26,6 @@ public class Mario : MonoBehaviour
     [SerializeField] private bool flower = false;
     [SerializeField] private bool starred = false;
     [SerializeField] private bool alive = true;
-
-    private void Start()
-    {
-
-    }
-
 
     private void Update()
     {
@@ -60,14 +53,22 @@ public class Mario : MonoBehaviour
             {
                 jumpTimeCounter = 0;
             }
+
+            if (flower && Input.GetKeyDown(KeyCode.Z))
+            {
+                Vector3 spawnPOS = this.gameObject.transform.position;
+                spawnPOS.x = spawnPOS.x + x;
+                GameObject fireballinstance = Instantiate(fireball, spawnPOS, this.gameObject.transform.rotation);
+                fireballinstance.GetComponent<Fireball>().x = Mathf.Sign(x);
+            }
         }
     }
     private void FixedUpdate()
     {
         if (alive)
         {
-            x = Input.GetAxis("Horizontal");
-            rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
+            if (Input.GetAxis("Horizontal")!=0) x = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y);
         }
     }
 
@@ -94,7 +95,7 @@ public class Mario : MonoBehaviour
             Monster monster = raycastHit.collider.GetComponent<Monster>();
             if (monster != null)
             {
-                monster.Death(x, 's');
+                if (!monster.shelled) monster.Death(x, 's');
             }
             rb.velocity = new Vector2(rb.velocity.x, 6f);
         }
@@ -142,8 +143,8 @@ public class Mario : MonoBehaviour
         Debug.Log(collision);
         if (collision.gameObject.CompareTag("Shroom"))
         {
-            Debug.Log("Morb");
             Morb();
+            Destroy(collision.gameObject);
         }
     }
 }

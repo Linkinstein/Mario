@@ -10,22 +10,13 @@ public class Monster : MonoBehaviour
     [SerializeField] private LayerMask playerLayerMask;
     [SerializeField] private LayerMask enemyLayerMask;
 
-    [SerializeField] private float x = -1;
-    [SerializeField] private float moveSpeed = 1f;
+    private float x = -1;
+    private float moveSpeed = 1f;
 
     [SerializeField] private bool turtle = false;
-    [SerializeField] private bool shelled = false;
+    [SerializeField] public bool shelled = false;
     [SerializeField] private bool alive = true;
 
-    private void Start()
-    {
-        Death(1, 's');
-    }
-
-    private void Update()
-    {
-
-    }
 
     private void FixedUpdate()
     {
@@ -56,7 +47,7 @@ public class Monster : MonoBehaviour
             if (shelled && !alive) collision.gameObject.GetComponent<Mario>().Death();
             if (shelled && alive)
             {
-                x = Mathf.Sign(this.gameObject.transform.position.x - collision.transform.position.x)*1;
+                x = Mathf.Sign(this.gameObject.transform.position.x - collision.transform.position.x);
                 alive = false;
                 cc2d.excludeLayers = 0;
             }
