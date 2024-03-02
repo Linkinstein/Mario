@@ -29,6 +29,11 @@ public class Monster : MonoBehaviour
             if (HittingWall()) x = x * -1;
             rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
         }
+        if (shelled & !alive)
+        {
+            if (HittingWall()) x = x * -1;
+            rb.velocity = new Vector2(x * (moveSpeed*5), rb.velocity.y);
+        }
     }
 
     private bool HittingWall()
@@ -40,11 +45,15 @@ public class Monster : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision);
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (alive) collision.gameObject.GetComponent<Mario>().Death();
+            if (alive && !shelled) collision.gameObject.GetComponent<Mario>().Death();
             if (shelled && !alive) collision.gameObject.GetComponent<Mario>().Death();
+            if (shelled && alive)
+            {
+                x = Mathf.Sign(this.gameObject.transform.position.x - collision.transform.position.x)*1;
+                alive = false;
+            }
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -55,11 +64,12 @@ public class Monster : MonoBehaviour
     public void Death(float dir, char cause)
     {
         switch (cause)
-        {//s
-            case 'o':
+        {
+            case 's':
                 if (turtle)
                 {
-
+                    shelled = true;
+                    rb.velocity = new Vector2(0, 0);
                 }
                 else
                 {

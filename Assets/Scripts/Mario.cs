@@ -20,6 +20,7 @@ public class Mario : MonoBehaviour
     [SerializeField] private float jumpTimeCounter = 0;
 
     [SerializeField] private bool big = false;
+    [SerializeField] private bool starred = false;
     [SerializeField] private bool alive = true;
 
     private void Update()
@@ -79,9 +80,18 @@ public class Mario : MonoBehaviour
 
     public void Death()
     {
-        Debug.Log("Mario Died");
-        bc2d.enabled = false;
-        alive = false;
-        rb.velocity = new Vector2(0, 3f);
+        if (!starred)
+        {
+            if (!big)
+            {
+                bc2d.enabled = false;
+                alive = false;
+                rb.velocity = new Vector2(0, 3f);
+            }
+            else 
+            {
+                big = false;
+            }
+        }
     }
 }
