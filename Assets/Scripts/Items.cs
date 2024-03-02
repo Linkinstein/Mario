@@ -8,8 +8,8 @@ public class Items : MonoBehaviour
     [SerializeField] private BoxCollider2D bc2d;
     [SerializeField] private LayerMask platformLayerMask;
 
-    [SerializeField] public float x = 1;
-    [SerializeField] private float moveSpeed = 3f;
+    public float x = 1;
+    private float moveSpeed = 3f;
     [SerializeField] public bool mover = false;
 
     private void FixedUpdate()
