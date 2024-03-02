@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 505229359}
   - component: {fileID: 505229362}
   - component: {fileID: 505229361}
+  - component: {fileID: 505229363}
   m_Layer: 0
   m_Name: shroom
   m_TagString: Shroom
@@ -269,7 +270,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -326,6 +327,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &505229363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505229356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac9f9afb5804c5649a502ebf2328a022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 505229362}
+  bc2d: {fileID: 505229361}
+  platformLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  x: -1
+  moveSpeed: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -13534,11 +13554,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1671524269588558907, guid: 3c532427e256f57488c05402f3e598b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.98
+      value: -2.35
       objectReference: {fileID: 0}
     - target: {fileID: 1671524269588558907, guid: 3c532427e256f57488c05402f3e598b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.37
+      value: -2.36
       objectReference: {fileID: 0}
     - target: {fileID: 1671524269588558907, guid: 3c532427e256f57488c05402f3e598b6, type: 3}
       propertyPath: m_LocalPosition.z

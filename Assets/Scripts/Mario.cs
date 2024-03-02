@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Mario : MonoBehaviour
@@ -94,7 +93,7 @@ public class Mario : MonoBehaviour
             Monster monster = raycastHit.collider.GetComponent<Monster>();
             if (monster != null)
             {
-                monster.Death(x, 's');
+                if (!monster.shelled) monster.Death(x, 's');
             }
             rb.velocity = new Vector2(rb.velocity.x, 6f);
         }
@@ -142,8 +141,8 @@ public class Mario : MonoBehaviour
         Debug.Log(collision);
         if (collision.gameObject.CompareTag("Shroom"))
         {
-            Debug.Log("Morb");
             Morb();
+            Destroy(collision.gameObject);
         }
     }
 }

@@ -14,18 +14,9 @@ public class Monster : MonoBehaviour
     [SerializeField] private float moveSpeed = 1f;
 
     [SerializeField] private bool turtle = false;
-    [SerializeField] private bool shelled = false;
+    [SerializeField] public bool shelled = false;
     [SerializeField] private bool alive = true;
 
-    private void Start()
-    {
-        Death(1, 's');
-    }
-
-    private void Update()
-    {
-
-    }
 
     private void FixedUpdate()
     {
