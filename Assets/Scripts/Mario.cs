@@ -82,7 +82,7 @@ public class Mario : MonoBehaviour
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.up, 0.1f, platformLayerMask);
         if (raycastHit.collider != null)
         {
-            Debug.Log(raycastHit.collider != null);
+
         }
     }
 
@@ -96,7 +96,7 @@ public class Mario : MonoBehaviour
             {
                 monster.Death(x, 's');
             }
-            rb.velocity = new Vector2(rb.velocity.x, 3f);
+            rb.velocity = new Vector2(rb.velocity.x, 6f);
         }
     }
 
@@ -132,12 +132,18 @@ public class Mario : MonoBehaviour
         else if (!big)
         {
             sr.sprite = bigun;
+            big = true;
             bc2d.size = new Vector2(bc2d.size.x, bc2d.size.y * 2);
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        Debug.Log(collision);
+        if (collision.gameObject.CompareTag("Shroom"))
+        {
+            Debug.Log("Morb");
+            Morb();
+        }
     }
 }
