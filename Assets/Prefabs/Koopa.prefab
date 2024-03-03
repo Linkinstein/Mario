@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7998518242507419488}
   - component: {fileID: 1889570727313285531}
   - component: {fileID: -9019459846457795496}
+  - component: {fileID: 6167563679308848773}
   m_Layer: 7
   m_Name: Koopa
   m_TagString: Enemy
@@ -126,20 +127,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4460cbba21891940a2e1e4a0874ed86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   rb: {fileID: 7998518242507419488}
   cc2d: {fileID: -9019459846457795496}
   platformLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   turtle: 1
   shelled: 0
   alive: 1
+  rezzing: 0
+  stomped: 0
+  murder: 0
 --- !u!70 &-9019459846457795496
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -175,3 +180,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 0.71875}
   m_Direction: 0
+--- !u!95 &6167563679308848773
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223704703342469635}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a4bd9a09c08533c4681e40b6a5adf2f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

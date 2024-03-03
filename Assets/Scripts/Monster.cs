@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private CapsuleCollider2D cc2d;
     [SerializeField] private LayerMask platformLayerMask;
@@ -17,6 +18,14 @@ public class Monster : MonoBehaviour
     [SerializeField] public bool shelled = false;
     [SerializeField] private bool alive = true;
 
+    [SerializeField] private bool rezzing = false;
+    [SerializeField] private bool stomped = false;
+    [SerializeField] private bool murder = false;
+
+    private void Update()
+    {
+        handleAnims();
+    }
 
     private void FixedUpdate()
     {
@@ -90,10 +99,16 @@ public class Monster : MonoBehaviour
         yield return new WaitForSeconds(3);
         if (alive)
         { 
-        
+            rezzing = true;
         }
-        //rev animation
         yield return new WaitForSeconds(2);
         if (alive) shelled = false;
+    }
+    private void handleAnims()
+    {
+        anim.SetBool("rezzing", rezzing);
+        anim.SetBool("stomped", stomped);
+        anim.SetBool("murder", murder);
+        anim.SetBool("shelled", shelled);
     }
 }

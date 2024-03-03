@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1775095774141309936}
   - component: {fileID: 5636084856876436456}
   - component: {fileID: 7060524267180791877}
+  - component: {fileID: 8457323311523461934}
   m_Layer: 7
   m_Name: Goomba
   m_TagString: Enemy
@@ -129,7 +130,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -161,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4460cbba21891940a2e1e4a0874ed86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 8457323311523461934}
   rb: {fileID: 1775095774141309936}
   cc2d: {fileID: 5636084856876436456}
   platformLayerMask:
@@ -175,3 +177,27 @@ MonoBehaviour:
   turtle: 0
   shelled: 0
   alive: 1
+  rezzing: 0
+  stomped: 0
+  murder: 0
+--- !u!95 &8457323311523461934
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892740154205870412}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5c1fde51f3be1df428ecbde4c61a294c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
