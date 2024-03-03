@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Shroom
   - Star
+  - GameManager
   layers:
   - Default
   - TransparentFX

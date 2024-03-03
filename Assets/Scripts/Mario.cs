@@ -74,6 +74,17 @@ public class Mario : MonoBehaviour
                 fireballinstance.GetComponent<Fireball>().x = x;
                 if (fireCount >= 2) StartCoroutine(fireCooldown());
             }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                moveSpeed += 1.5f;
+            }
+
+            // Check for key release
+            if (Input.GetKeyUp(KeyCode.Z))
+            {
+                moveSpeed -= 1.5f;
+            }
         }
     }
 
@@ -133,7 +144,7 @@ public class Mario : MonoBehaviour
             {
                 bc2d.enabled = false;
                 alive = false;
-                rb.velocity = new Vector2(0, 3f);
+                rb.velocity = new Vector2(0, 10f);
             }
             else
             {
