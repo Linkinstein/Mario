@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3180255490464518575}
   - component: {fileID: 936767680406623740}
   - component: {fileID: 4855669467211415181}
+  - component: {fileID: 2883626459366657759}
   m_Layer: 9
   m_Name: Star
   m_TagString: Star
@@ -179,3 +180,24 @@ MonoBehaviour:
     m_Bits: 256
   mover: 1
   x: 1
+--- !u!95 &2883626459366657759
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391626226752921201}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4d073b5e556ad4e4cb1bc937bf9b1c8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

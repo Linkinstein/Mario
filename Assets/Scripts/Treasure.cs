@@ -5,6 +5,7 @@ public class Treasure : MonoBehaviour
 {
     GameObject gmGO;
     GameManager gm;
+    [SerializeField] Animator anim;
     [SerializeField] bool activated = true;
     [SerializeField] bool shroom;
     [SerializeField] bool star;
@@ -18,28 +19,27 @@ public class Treasure : MonoBehaviour
     [SerializeField] GameObject starPrefab;
     [SerializeField] GameObject coinPrefab;
 
-    //[SerializeField] Sprite blockSprite;
+    [SerializeField] Sprite blockSprite;
 
     private void Start()
     {
         gmGO = GameObject.FindWithTag("GameManager");
         gm = gmGO.GetComponent<GameManager>();
+        anim = gameObject.GetComponent<Animator>();
         if (invisible) this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        /**if (fake)
         {
-        this.gameObject.GetComponent<Animator>.enabled = false;
+        this.gameObject.GetComponent<Animator>().enabled = false;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = blockSprite;
-        }**/
+        }
     }
 
     public void hit(float x, bool big)
     {
-
         //jiggle? no time baby
         if (activated)
         {
             Vector2 newPOS = this.gameObject.transform.position;
-            newPOS.y = newPOS.y + 0.25f;
+            newPOS.y = newPOS.y + 0.5f;
 
             if (coin)
             {
@@ -69,6 +69,7 @@ public class Treasure : MonoBehaviour
                 star.GetComponent<Items>().x = x;
             }
         }
+        anim.SetBool("Activated", activated);
     }
 
     IEnumerator destroyCoin(GameObject coin)

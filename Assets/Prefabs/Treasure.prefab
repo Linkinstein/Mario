@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4915396376429314969}
   - component: {fileID: 7795331173029635030}
   - component: {fileID: 8162629398123068042}
+  - component: {fileID: 3536467978742340370}
   m_Layer: 8
   m_Name: Treasure
   m_TagString: Ground
@@ -154,3 +155,24 @@ MonoBehaviour:
   shroomPrefab: {fileID: 4643929886319675054, guid: 7cb0508ef856c824f8c7d2934a657860, type: 3}
   starPrefab: {fileID: 1391626226752921201, guid: d1cc6c4cfafa3724ea727ad77a91272d, type: 3}
   coinPrefab: {fileID: 2667655320932165110, guid: 53250b708572ca2449c44e46536e0e73, type: 3}
+--- !u!95 &3536467978742340370
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513934928502074194}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 66d6cc7c3e5c9214b84c4d0ae926032c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI cointext;
     int coin = 0;
 
+    GameObject audioGO;
+    AudioManager audio;
+
     void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -33,6 +36,8 @@ public class GameManager : MonoBehaviour
         scoretext = scoreGO.GetComponent<TextMeshProUGUI>();
         coinGO = GameObject.FindWithTag("Coin");
         cointext = coinGO.GetComponent<TextMeshProUGUI>();
+        audioGO = GameObject.FindWithTag("Audio");
+        audio = audioGO.GetComponent<AudioManager>();
     }
 
     private void OnEnable()
@@ -50,10 +55,16 @@ public class GameManager : MonoBehaviour
         scoretext = scoreGO.GetComponent<TextMeshProUGUI>();
         coinGO = GameObject.FindWithTag("Coin");
         cointext = coinGO.GetComponent<TextMeshProUGUI>();
+        audioGO = GameObject.FindWithTag("Audio");
+        audio = audioGO.GetComponent<AudioManager>();
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         time -= Time.deltaTime;
         timetext.SetText((int)time + "");
         livetext.SetText(live + "");
@@ -76,7 +87,8 @@ public class GameManager : MonoBehaviour
     public void die()
     {
         live -= 1;
-
+        audio.PlayMarioDeath();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void liveup()
