@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] Transform mario;
+    [SerializeField] private Transform mario;
+    [SerializeField] private Transform blocker;
+    [SerializeField] private float distance;
 
     private void Update()
     {
@@ -16,6 +18,13 @@ public class CameraMovement : MonoBehaviour
                 newPosition.x = mario.position.x + 1.75f;
                 transform.position = newPosition;
             }
+        }
+
+        if (blocker != null)
+        {
+            Vector3 newPosition = transform.position;
+            newPosition.x = transform.position.x - distance;
+            blocker.position = newPosition;
         }
     }
 }
