@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 1
-  shroom: 0
-  star: 1
+  shroom: 1
+  star: 0
   coin: 0
   itemless: 0
   fake: 0

@@ -101,9 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 2613998716748261351}
-  bigun: {fileID: 21300000, guid: 32854c9c886b0e3479f868e0fa806f2f, type: 3}
-  smallun: {fileID: 21300000, guid: 98548ca02c3e95b4b9f3ddf85efb2350, type: 3}
   fireball: {fileID: 7074763508660710259, guid: 2087e5d8da8c4bf43ac93faef0e43dcf, type: 3}
+  sr: {fileID: 3228475830990733920}
   rb: {fileID: 1317873001921914536}
   bc2d: {fileID: 4199449043030953864}
   platformLayerMask:
