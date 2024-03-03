@@ -9,6 +9,10 @@ TagManager:
   - Shroom
   - Star
   - GameManager
+  - Score
+  - Time
+  - Live
+  - Coin
   layers:
   - Default
   - TransparentFX
