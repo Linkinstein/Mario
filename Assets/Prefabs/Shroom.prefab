@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9f9afb5804c5649a502ebf2328a022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flowerSprite: {fileID: 21300000, guid: 270498c42d3dd67408dd7f36a8926e69, type: 3}
   rb: {fileID: 6270902537159728818}
   bc2d: {fileID: 6871458699404454396}
   platformLayerMask:

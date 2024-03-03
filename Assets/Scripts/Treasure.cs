@@ -14,7 +14,12 @@ public class Treasure : MonoBehaviour
     [SerializeField] GameObject shroomPrefab;
     [SerializeField] GameObject starPrefab;
 
-    public void hit(float x)
+    private void Start()
+    {
+        if (invisible) this.gameObject.GetComponent<Renderer>().enabled = false;
+    }
+
+    public void hit(float x, bool big)
     {
         //jiggle
         if (activated)
@@ -34,9 +39,11 @@ public class Treasure : MonoBehaviour
                 newPOS.y = newPOS.y + 0.25f;
                 GameObject shroom = Instantiate(shroomPrefab, newPOS, this.gameObject.transform.rotation);
                 shroom.GetComponent<Items>().x = x;
+                if(big) shroom.GetComponent<Items>().Flower();
             }
             if (star)
             {
+                activated = false;
 
             }
         }

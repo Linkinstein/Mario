@@ -56,7 +56,7 @@ public class Mario : MonoBehaviour
                 jumpTimeCounter = 0;
             }
 
-            if (flower && Input.GetKeyDown(KeyCode.Z) && fireCount<2)
+            if (flower && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.LeftShift)) && fireCount<2)
             {
                 fireCount++;
                 Vector3 spawnPOS = this.gameObject.transform.position;
@@ -97,7 +97,7 @@ public class Mario : MonoBehaviour
             Treasure treasure = raycastHit.collider.GetComponent<Treasure>();
             if (treasure != null) 
             {
-                treasure.hit(x);
+                treasure.hit(x,big);
             }
         }
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {
+    [SerializeField] Sprite flowerSprite;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D bc2d;
     [SerializeField] private LayerMask platformLayerMask;
@@ -39,5 +41,11 @@ public class Items : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
         stuck = false;
+    }
+
+    public void Flower()
+    {
+        mover = false;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = flowerSprite;
     }
 }
