@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6775034594070142378}
   - component: {fileID: 1317873001921914536}
   - component: {fileID: 4199449043030953864}
+  - component: {fileID: 2613998716748261351}
   m_Layer: 6
   m_Name: placeholderMario
   m_TagString: Player
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 32854c9c886b0e3479f868e0fa806f2f, type: 3}
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 21300000, guid: 98548ca02c3e95b4b9f3ddf85efb2350, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,6 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476a4a1d6a1097746989c078340087c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 2613998716748261351}
+  fireball: {fileID: 7074763508660710259, guid: 2087e5d8da8c4bf43ac93faef0e43dcf, type: 3}
+  sr: {fileID: 3228475830990733920}
   rb: {fileID: 1317873001921914536}
   bc2d: {fileID: 4199449043030953864}
   platformLayerMask:
@@ -113,6 +117,9 @@ MonoBehaviour:
   jumpTime: 0.25
   jumpTimeCounter: 0
   big: 0
+  flower: 0
+  starred: 0
+  alive: 1
 --- !u!50 &1317873001921914536
 Rigidbody2D:
   serializedVersion: 4
@@ -176,12 +183,33 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.46, y: 1}
+  m_Size: {x: 0.46, y: 0.475}
   m_EdgeRadius: 0
+--- !u!95 &2613998716748261351
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543694016542059548}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 768aa23460770594893c94988feed492, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

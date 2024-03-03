@@ -22,7 +22,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 0.016666668
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -41,8 +41,8 @@ AnimationClip:
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
-    - time: 0
-      value: {fileID: 298487212, guid: 6b2f9c9af446c8f4e9157b749ef1d486, type: 3}
+    - time: 0.016666668
+      value: {fileID: 21300000, guid: 98548ca02c3e95b4b9f3ddf85efb2350, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -74,13 +74,13 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 298487212, guid: 6b2f9c9af446c8f4e9157b749ef1d486, type: 3}
+    - {fileID: 21300000, guid: 98548ca02c3e95b4b9f3ddf85efb2350, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 0.033333335
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -101,7 +101,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 0.016666668
         value: 1
         inSlope: Infinity
         outSlope: Infinity

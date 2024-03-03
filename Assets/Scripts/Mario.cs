@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 public class Mario : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    [SerializeField] private Sprite bigun;
-    [SerializeField] private Sprite smallun;
     [SerializeField] private GameObject fireball;
-
+    [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D bc2d;
     [SerializeField] private LayerMask platformLayerMask;
@@ -27,7 +26,6 @@ public class Mario : MonoBehaviour
     [SerializeField] private bool flower = false;
     [SerializeField] private bool starred = false;
     [SerializeField] private bool alive = true;
-    [SerializeField] private bool jumped = false;
 
     private int fireCount = 0;
 
@@ -36,21 +34,24 @@ public class Mario : MonoBehaviour
         handleAnims();
         if (alive)
         {
+            if (starred)
+            {
+                if (sr.color == Color.yellow) sr.color = Color.white;
+                else sr.color = Color.yellow;
+            }
+            else if (flower) sr.color = new Color(255f, 189f, 189f);
+            else sr.color = Color.white;
+
             if (!isGrounded())
             {
                 checkFeet();
                 checkHead();
-            }
-            else 
-            {
-                jumped = false;
             }
 
             if (isGrounded() && Input.GetButtonDown("Jump"))
             {
                 jumpTimeCounter = jumpTime;
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                jumped = true;
             }
 
             if (Input.GetButton("Jump") && jumpTimeCounter > 0)
@@ -136,26 +137,27 @@ public class Mario : MonoBehaviour
             }
             else
             {
-                SpriteRenderer sr = this.gameObject.GetComponent<SpriteRenderer>();
+                sr.color = Color.white;
                 big = false;
                 flower = false;
-                sr.sprite = smallun;
                 bc2d.size = new Vector2(bc2d.size.x, bc2d.size.y / 2);
+                if (x>0) anim.Play("small idle right", -1, 0);
+                else anim.Play("small idle left", -1, 0);
             }
         }
     }
 
     public void Morb()
     {
-        SpriteRenderer sr = this.gameObject.GetComponent<SpriteRenderer>();
         if (big && !flower)
         {
-            sr.color = Color.red;
+            sr.color = new Color(255f, 189f, 189f);
             flower = true;
         }
         else if (!big)
         {
-            sr.sprite = bigun;
+            if (x > 0) anim.Play("big idle right", -1, 0);
+            else anim.Play("big idle left", -1, 0);
             big = true;
             bc2d.size = new Vector2(bc2d.size.x, bc2d.size.y * 2);
         }
@@ -172,12 +174,13 @@ public class Mario : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy") && starred)
         {
-            collision.gameObject.GetComponent<Monster>().Death(x, ' ');
+            collision.gameObject.GetComponent<Monster>().Death(x,' ');
         }
 
         if (collision.gameObject.CompareTag("Star"))
         {
             starred = true;
+            Destroy(collision.gameObject);
             StartCoroutine(starPower());
         }
     }
@@ -185,12 +188,8 @@ public class Mario : MonoBehaviour
     private void handleAnims()
     {
         anim.SetFloat("x", x);
-        anim.SetFloat("dir", Input.GetAxis("Shmorizontal"));
+        anim.SetInteger("dir2", (int)Input.GetAxis("Shmorizontal"));
         anim.SetBool("isGrounded",isGrounded());
-        anim.SetBool("jumped", jumped);
-        anim.SetBool("big", big);
-        anim.SetBool("flower", flower);
-        anim.SetBool("starred", starred);
         anim.SetBool("alive", alive);
     }
 
