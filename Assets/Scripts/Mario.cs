@@ -27,7 +27,6 @@ public class Mario : MonoBehaviour
     [SerializeField] private bool flower = false;
     [SerializeField] private bool starred = false;
     [SerializeField] private bool alive = true;
-    [SerializeField] private bool jumped = false;
 
     private int fireCount = 0;
 
@@ -41,16 +40,11 @@ public class Mario : MonoBehaviour
                 checkFeet();
                 checkHead();
             }
-            else 
-            {
-                jumped = false;
-            }
 
             if (isGrounded() && Input.GetButtonDown("Jump"))
             {
                 jumpTimeCounter = jumpTime;
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                jumped = true;
             }
 
             if (Input.GetButton("Jump") && jumpTimeCounter > 0)
@@ -185,9 +179,8 @@ public class Mario : MonoBehaviour
     private void handleAnims()
     {
         anim.SetFloat("x", x);
-        anim.SetFloat("dir", Input.GetAxis("Shmorizontal"));
+        anim.SetInteger("dir2", (int)Input.GetAxis("Shmorizontal"));
         anim.SetBool("isGrounded",isGrounded());
-        anim.SetBool("jumped", jumped);
         anim.SetBool("big", big);
         anim.SetBool("flower", flower);
         anim.SetBool("starred", starred);
