@@ -5,6 +5,8 @@ using UnityEngine.U2D.IK;
 
 public class Mario : MonoBehaviour
 {
+    GameObject gmGO;
+    GameManager gm;
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject fireball;
     [SerializeField] private SpriteRenderer sr;
@@ -22,12 +24,19 @@ public class Mario : MonoBehaviour
     [SerializeField] private float jumpTime = 0.25f;
     [SerializeField] private float jumpTimeCounter = 0;
 
-    [SerializeField] private bool big = false;
+    [SerializeField] public bool big = false;
     [SerializeField] private bool flower = false;
-    [SerializeField] private bool starred = false;
+    [SerializeField] public bool starred = false;
     [SerializeField] private bool alive = true;
 
     private int fireCount = 0;
+
+    private void Start()
+    {
+
+        gmGO = GameObject.FindWithTag("GameManager");
+        gm = gmGO.GetComponent<GameManager>();
+    }
 
     private void Update()
     {
@@ -181,6 +190,7 @@ public class Mario : MonoBehaviour
         {
             Morb();
             Destroy(collision.gameObject);
+            gm.getScore(1000);
         }
 
         if (collision.gameObject.CompareTag("Enemy") && starred)

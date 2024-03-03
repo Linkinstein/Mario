@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    GameObject gmGO;
+    GameManager gm;
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private CapsuleCollider2D cc2d;
@@ -21,6 +24,12 @@ public class Monster : MonoBehaviour
     [SerializeField] private bool rezzing = false;
     [SerializeField] private bool stomped = false;
     [SerializeField] private bool murder = false;
+
+    private void Start()
+    {
+        gmGO = GameObject.FindWithTag("GameManager");
+        gm = gmGO.GetComponent<GameManager>();
+    }
 
     private void Update()
     {
@@ -84,6 +93,7 @@ public class Monster : MonoBehaviour
                     cc2d.enabled = false;
                     rb.isKinematic = true;
                     alive = false;
+                    StartCoroutine(destroySelf());
                 }
                 rb.velocity = new Vector2(0, 0);
                 break;
@@ -93,6 +103,7 @@ public class Monster : MonoBehaviour
                 cc2d.enabled = false;
                 alive = false;
                 rb.velocity = new Vector2(dir, 3f);
+                StartCoroutine(destroySelf());
                 break;
         }
     }
@@ -118,6 +129,7 @@ public class Monster : MonoBehaviour
 
     IEnumerator destroySelf()
     {
+        gm.getScore(100);
         yield return new WaitForSeconds(1.5f);
         Destroy(this.gameObject);
     }

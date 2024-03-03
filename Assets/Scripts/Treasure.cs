@@ -1,7 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class Treasure : MonoBehaviour
 {
+    GameObject gmGO;
+    GameManager gm;
     [SerializeField] bool activated = true;
     [SerializeField] bool shroom;
     [SerializeField] bool star;
@@ -13,15 +16,18 @@ public class Treasure : MonoBehaviour
 
     [SerializeField] GameObject shroomPrefab;
     [SerializeField] GameObject starPrefab;
+    [SerializeField] GameObject coinPrefab;
 
     private void Start()
     {
-        if (invisible) this.gameObject.GetComponent<Renderer>().enabled = false;
+        gmGO = GameObject.FindWithTag("GameManager");
+        gm = gmGO.GetComponent<GameManager>();
+        if (invisible) this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void hit(float x, bool big)
     {
-        //jiggle
+        //jiggle? no time baby
         if (activated)
         {
             Vector2 newPOS = this.gameObject.transform.position;
@@ -29,13 +35,17 @@ public class Treasure : MonoBehaviour
 
             if (coin)
             {
+                newPOS.y = newPOS.y + 0.25f;
+                coinTimes--;
                 if (coinTimes <= 0)
                 {
+                    GameObject coin = Instantiate(coinPrefab, newPOS, this.gameObject.transform.rotation);
                     activated = false;
-
+                    gm.getScore(200);
+                    StartCoroutine(destroyCoin(coin));
                 }
-                coinTimes--;
             }
+
             if (shroom)
             {
                 activated = false;
@@ -43,6 +53,7 @@ public class Treasure : MonoBehaviour
                 shroom.GetComponent<Items>().x = x;
                 if(big) shroom.GetComponent<Items>().Flower();
             }
+
             if (star)
             {
                 activated = false;
@@ -50,5 +61,11 @@ public class Treasure : MonoBehaviour
                 star.GetComponent<Items>().x = x;
             }
         }
+    }
+
+    IEnumerator destroyCoin(GameObject coin)
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(coin);
     }
 }
