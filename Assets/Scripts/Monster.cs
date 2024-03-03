@@ -80,6 +80,7 @@ public class Monster : MonoBehaviour
                 }
                 else
                 {
+                    stomped = true;
                     cc2d.enabled = false;
                     rb.isKinematic = true;
                     alive = false;
@@ -88,6 +89,7 @@ public class Monster : MonoBehaviour
                 break;
 
             default:
+                murder = true;
                 cc2d.enabled = false;
                 alive = false;
                 rb.velocity = new Vector2(dir, 3f);
@@ -103,12 +105,20 @@ public class Monster : MonoBehaviour
         }
         yield return new WaitForSeconds(2);
         if (alive) shelled = false;
+        rezzing = false;
     }
     private void handleAnims()
     {
+        anim.SetFloat("x", x);
         anim.SetBool("rezzing", rezzing);
         anim.SetBool("stomped", stomped);
         anim.SetBool("murder", murder);
         anim.SetBool("shelled", shelled);
+    }
+
+    IEnumerator destroySelf()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Destroy(this.gameObject);
     }
 }
