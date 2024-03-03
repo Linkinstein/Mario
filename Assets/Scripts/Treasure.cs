@@ -18,15 +18,23 @@ public class Treasure : MonoBehaviour
     [SerializeField] GameObject starPrefab;
     [SerializeField] GameObject coinPrefab;
 
+    //[SerializeField] Sprite blockSprite;
+
     private void Start()
     {
         gmGO = GameObject.FindWithTag("GameManager");
         gm = gmGO.GetComponent<GameManager>();
         if (invisible) this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        /**if (fake)
+        {
+        this.gameObject.GetComponent<Animator>.enabled = false;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = blockSprite;
+        }**/
     }
 
     public void hit(float x, bool big)
     {
+
         //jiggle? no time baby
         if (activated)
         {
@@ -36,13 +44,13 @@ public class Treasure : MonoBehaviour
             if (coin)
             {
                 newPOS.y = newPOS.y + 0.25f;
+                gm.coined();
                 coinTimes--;
+                GameObject coin = Instantiate(coinPrefab, newPOS, this.gameObject.transform.rotation);
+                StartCoroutine(destroyCoin(coin));
                 if (coinTimes <= 0)
                 {
-                    GameObject coin = Instantiate(coinPrefab, newPOS, this.gameObject.transform.rotation);
                     activated = false;
-                    gm.getScore(200);
-                    StartCoroutine(destroyCoin(coin));
                 }
             }
 

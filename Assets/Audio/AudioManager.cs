@@ -25,11 +25,11 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+
     //"PlayAudioClipName" is a method to to play "nameOfAudio".
     public void PlayAudioClipName()
     {
         soundEffectSource.PlayOneShot(nameOfAudio);
-        //"nameOfAudio" is a reference to the actual audio clip to be used. Assign any audio clip to this field in the Inspector.
     }
 
     public void PlayBGM()

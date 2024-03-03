@@ -6,7 +6,6 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     GameObject gmGO;
-    GameManager gm;
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private CapsuleCollider2D cc2d;
@@ -28,7 +27,6 @@ public class Monster : MonoBehaviour
     private void Start()
     {
         gmGO = GameObject.FindWithTag("GameManager");
-        gm = gmGO.GetComponent<GameManager>();
     }
 
     private void Update()
@@ -129,7 +127,7 @@ public class Monster : MonoBehaviour
 
     IEnumerator destroySelf()
     {
-        gm.getScore(100);
+        gmGO.GetComponent<GameManager>().getScore(100);
         yield return new WaitForSeconds(1.5f);
         Destroy(this.gameObject);
     }

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         scoreGO = GameObject.FindWithTag("Score");
         scoretext = scoreGO.GetComponent<TextMeshProUGUI>();
         coinGO = GameObject.FindWithTag("Coin");
-        cointext = scoreGO.GetComponent<TextMeshProUGUI>();
+        cointext = coinGO.GetComponent<TextMeshProUGUI>();
     }
 
     private void OnEnable()
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         scoreGO = GameObject.FindWithTag("Score");
         scoretext = scoreGO.GetComponent<TextMeshProUGUI>();
         coinGO = GameObject.FindWithTag("Coin");
-        cointext = scoreGO.GetComponent<TextMeshProUGUI>();
+        cointext = coinGO.GetComponent<TextMeshProUGUI>();
     }
 
     private void Update()
@@ -63,12 +63,14 @@ public class GameManager : MonoBehaviour
 
     public void getScore(int gainz)
     {
+        Debug.Log(gainz);
         score += gainz;
     }
 
     public void coined()
     {
         coin += 1;
+        getScore(100);
     }
 
     public void die()

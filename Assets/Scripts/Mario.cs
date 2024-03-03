@@ -154,6 +154,7 @@ public class Mario : MonoBehaviour
                 bc2d.enabled = false;
                 alive = false;
                 rb.velocity = new Vector2(0, 10f);
+                gm.die();
             }
             else
             {
