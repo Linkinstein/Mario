@@ -248,6 +248,7 @@ MonoBehaviour:
   soundEffectSource: {fileID: 0}
   nameOfAudio: {fileID: 0}
   backgroundMusic: {fileID: 8300000, guid: 85ef4c1e1a61c884da3a700395c4e8c6, type: 3}
+  marioDeath: {fileID: 8300000, guid: f4b2e92e089d71345ae4490a4d55c655, type: 3}
 --- !u!4 &823087809
 Transform:
   m_ObjectHideFlags: 0
@@ -277,7 +278,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
