@@ -3,7 +3,9 @@ guid: 00b840a5d8bc2da409cd12cae691b261
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - shroomPrefab: {fileID: 4643929886319675054, guid: 7cb0508ef856c824f8c7d2934a657860, type: 3}
+  - starPrefab: {fileID: 8154745477421327625, guid: d1cc6c4cfafa3724ea727ad77a91272d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

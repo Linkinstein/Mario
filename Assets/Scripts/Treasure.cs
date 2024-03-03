@@ -24,19 +24,21 @@ public class Treasure : MonoBehaviour
         //jiggle
         if (activated)
         {
+            Vector2 newPOS = this.gameObject.transform.position;
+            newPOS.y = newPOS.y + 0.25f;
+
             if (coin)
             {
                 if (coinTimes <= 0)
                 {
                     activated = false;
+
                 }
                 coinTimes--;
             }
             if (shroom)
             {
                 activated = false;
-                Vector2 newPOS = this.gameObject.transform.position;
-                newPOS.y = newPOS.y + 0.25f;
                 GameObject shroom = Instantiate(shroomPrefab, newPOS, this.gameObject.transform.rotation);
                 shroom.GetComponent<Items>().x = x;
                 if(big) shroom.GetComponent<Items>().Flower();
@@ -44,7 +46,8 @@ public class Treasure : MonoBehaviour
             if (star)
             {
                 activated = false;
-
+                GameObject star = Instantiate(starPrefab, newPOS, this.gameObject.transform.rotation);
+                star.GetComponent<Items>().x = x;
             }
         }
     }

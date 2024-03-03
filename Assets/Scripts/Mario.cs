@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mario : MonoBehaviour
 {
+    [SerializeField] private Animator anim;
     [SerializeField] private Sprite bigun;
     [SerializeField] private Sprite smallun;
     [SerializeField] private GameObject fireball;
@@ -26,11 +27,13 @@ public class Mario : MonoBehaviour
     [SerializeField] private bool flower = false;
     [SerializeField] private bool starred = false;
     [SerializeField] private bool alive = true;
+    [SerializeField] private bool jumped = false;
 
     private int fireCount = 0;
 
     private void Update()
     {
+        handleAnims();
         if (alive)
         {
             if (!isGrounded())
@@ -38,11 +41,16 @@ public class Mario : MonoBehaviour
                 checkFeet();
                 checkHead();
             }
+            else 
+            {
+                jumped = false;
+            }
 
             if (isGrounded() && Input.GetButtonDown("Jump"))
             {
                 jumpTimeCounter = jumpTime;
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                jumped = true;
             }
 
             if (Input.GetButton("Jump") && jumpTimeCounter > 0)
@@ -104,7 +112,7 @@ public class Mario : MonoBehaviour
 
     private void checkFeet()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, 0.1f, enemyLayerMask);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, 0.15f, enemyLayerMask);
         if (raycastHit.collider != null)
         {
             Monster monster = raycastHit.collider.GetComponent<Monster>();
@@ -161,5 +169,34 @@ public class Mario : MonoBehaviour
             Morb();
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Enemy") && starred)
+        {
+            collision.gameObject.GetComponent<Monster>().Death(x, ' ');
+        }
+
+        if (collision.gameObject.CompareTag("Star"))
+        {
+            starred = true;
+            StartCoroutine(starPower());
+        }
+    }
+
+    private void handleAnims()
+    {
+        anim.SetFloat("x", x);
+        anim.SetFloat("dir", Input.GetAxis("Shmorizontal"));
+        anim.SetBool("isGrounded",isGrounded());
+        anim.SetBool("jumped", jumped);
+        anim.SetBool("big", big);
+        anim.SetBool("flower", flower);
+        anim.SetBool("starred", starred);
+        anim.SetBool("alive", alive);
+    }
+
+    IEnumerator starPower()
+    {
+        yield return new WaitForSeconds(10f);
+        starred = false;
     }
 }
