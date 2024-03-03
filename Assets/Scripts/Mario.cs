@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 public class Mario : MonoBehaviour
 {
@@ -140,7 +141,7 @@ public class Mario : MonoBehaviour
                 big = false;
                 flower = false;
                 bc2d.size = new Vector2(bc2d.size.x, bc2d.size.y / 2);
-                if(x>0) anim.Play("small idle right", -1, 0);
+                if (x>0) anim.Play("small idle right", -1, 0);
                 else anim.Play("small idle left", -1, 0);
             }
         }
