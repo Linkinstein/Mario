@@ -9,6 +9,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public AudioSource soundEffectSource;
     public AudioClip nameOfAudio;
+    public AudioClip backgroundMusic;
+    public AudioClip marioDeath;
 
     void Awake()
     {
@@ -29,6 +31,20 @@ public class AudioManager : MonoBehaviour
         soundEffectSource.PlayOneShot(nameOfAudio);
         //"nameOfAudio" is a reference to the actual audio clip to be used. Assign any audio clip to this field in the Inspector.
     }
+
+    public void PlayBGM()
+    {
+        soundEffectSource.PlayOneShot(backgroundMusic);
+    }
+
+    public void PlayMarioDeath()
+    {
+        soundEffectSource.PlayOneShot(marioDeath);
+    }
+
+
+
+
 
     //Assign the sound effects to be played to the appropriate fields in the AudioManager component attached to the AudioManager empty Game Object in  the Editor.
 
